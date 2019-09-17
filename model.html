@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>stcDemo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://unpkg.com/tabulator-tables@4.4.1/dist/css/tabulator.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.4.1/dist/js/tabulator.min.js"></script>
+  <script src="data.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html" style="color: white">stcDemo</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Chart</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="model.html">Model</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="modelView"></div>
+
+  <script>
+    var tableData = data.View3.map(function(e) {
+      return {
+        IID: e.IID,
+        DESCR: e.DESCR,
+        PRICE: e.PRICE,
+        FRT: e.FRT,
+        OPID: e.OPID,
+        TYPE: e.TYPE,
+        GIID: e.GIID,
+        NOTE: e.NOTE
+      }
+    });
+
+    var table = new Tabulator("#modelView", {
+      cellEdited: function(cell) {
+        alert("Cell Updated");
+      },
+      data: tableData,
+      height: 500,
+      layout: 'fitColumns',
+      columns: [{
+          title: "IID",
+          field: "IID",
+          editor: "input"
+        },
+        {
+          title: "DESCR",
+          field: "DESCR",
+          editor: "input"
+        },
+        {
+          title: "PRICE",
+          field: "PRICE",
+          editor: "input"
+        },
+        {
+          title: "FRT",
+          field: "FRT",
+          editor: "input"
+        },
+        {
+          title: "OPID",
+          field: "OPID",
+          editor: "input"
+        },
+        {
+          title: "TYPE",
+          field: "TYPE",
+          editor: "input"
+        },
+        {
+          title: "GIID",
+          field: "GIID",
+          editor: "input"
+        },
+        {
+          title: "NOTE",
+          field: "NOTE",
+          editor: "input"
+        }
+      ]
+    });
+  </script>
+</body>
+
+</html>

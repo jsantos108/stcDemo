@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>stcDemo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+  <script src="data.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html" style="color: white">stcDemo</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Chart</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="model.html">Model</a></li>
+      </ul>
+    </div>
+  </nav>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    var mOneData = data.View1.map(function(e) {
+      if (e.MODEL === "Demo - Model 01") {
+        return {
+          x: Number(e.LSC),
+          y: Number(e.A)
+        }
+      }
+
+    });
+
+    var mTwoData = data.View1.map(function(e) {
+      if (e.MODEL === "Demo - Model 02") {
+        return {
+          x: Number(e.LSC),
+          y: Number(e.A)
+        }
+      }
+    });
+
+    var mThreeData = data.View1.map(function(e) {
+      if (e.MODEL === "Demo - Model 03") {
+        return {
+          x: Number(e.LSC),
+          y: Number(e.A)
+        }
+      }
+    });
+
+    new Chart(document.getElementById("myChart"), {
+      type: 'scatter',
+      data: {
+        datasets: [{
+            label: 'Model 1',
+            data: mOneData,
+            backgroundColor: 'red',
+            fill: 'false',
+            showLine: 'true'
+          },
+          {
+            label: 'Model 2',
+            data: mTwoData,
+            backgroundColor: 'blue',
+            fill: 'false',
+            showLine: 'true'
+          },
+          {
+            label: 'Model 3',
+            data: mThreeData,
+            backgroundColor: 'green',
+            fill: 'false',
+            showLine: 'true'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+          display: true,
+          text: 'C/E Curve Diagram'
+        },
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Availability'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Cost'
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
